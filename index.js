@@ -8,7 +8,7 @@ client.once("ready", () => {
   console.log("Ready!");
 });
 
-client.on("message", async (message) => {
+client.on("message", (message) => {
   if (message.content.startsWith("q!help")) {
     message.channel.send(
       "This bot stores all the eSpice QOTDs; you can check them all by typing 'q!giveList.'\nI also crack lame jokes. Check them out too by 'q!joke'"
