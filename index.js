@@ -8,7 +8,7 @@ client.once("ready", () => {
   console.log("Ready!");
 });
 
-client.on("message", (message) => {
+client.on("message", async (message) => {
   if (message.content.startsWith("q!help")) {
     message.channel.send(
       "This bot stores all the eSpice QOTDs; you can check them all by typing 'q!giveList.'\nI also crack lame jokes. Check them out too by 'q!joke'"
@@ -36,8 +36,9 @@ client.on("message", (message) => {
     let x = message.author;
     message.channel.send("DMed you with the question list :)");
     fs.readFile("./questions.txt", "utf-8", (err, data) => {
-      if (err) throw err;
-      console.log("questions given");
+      if (err) {
+        console.log(err);
+      }
       x.send(data);
     });
   }
