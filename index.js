@@ -40,26 +40,7 @@ client.on("message", async (message) => {
       console.log("questions given");
       x.send(data);
     });
-  } else if (message.content.startsWith("q!joke")) {
-    await message.channel.send(
-      "Toh bhai main joke maarne ja raha hoon, agar lame lage toh please maarna mat."
-    );
-    await joke()
-      .then((sayJoke = (jox) => message.channel.send(jox)))
-      .catch((err = (errorMessage) => console.log(errorMessage)));
   }
 });
 
 client.login(token);
-
-async function joke() {
-  let endpoint = "https://icanhazdadjoke.com/";
-  let jokeData = await fetch(endpoint, {
-    headers: {
-      Accept: "application/json",
-    },
-  });
-  jokeData = await jokeData.json();
-  jokeData = await jokeData.joke;
-  return jokeData;
-}
