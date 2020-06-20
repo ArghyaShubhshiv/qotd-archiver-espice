@@ -2,6 +2,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 
 const client = new Discord.Client();
+const token = process.env.TOKEN;
 
 client.once("ready", () => {
   console.log("Ready!");
@@ -10,7 +11,7 @@ client.once("ready", () => {
 client.on("message", async (message) => {
   if (message.content.startsWith("q!help")) {
     message.channel.send(
-      "This bot stores all the eSpice QOTDs; you can check them all by typing 'q!giveList'\n NOTE: One channel must be havin the name 'qotd'."
+      "This bot stores all the eSpice QOTDs; you can check them all by typing 'q!giveList.'\nI also crack lame jokes. Check them out too by 'q!joke'"
     );
   } else if (
     message.content.startsWith("<#645998087076315157>") &&
@@ -39,7 +40,33 @@ client.on("message", async (message) => {
       console.log("questions given");
       x.send(data);
     });
+  } else if (message.content.startsWith("q!joke")) {
+    await message.channel.send(
+      "Toh bhai main joke maarne ja raha hoon, agar lame lage toh please maarna mat."
+    );
+    await joke()
+      .then((sayJoke = (jox) => message.channel.send(jox)))
+      .catch(
+        (err = () => {
+          message.channel.send(
+            "Ya chhod yaar; maine nai maarna koi faaltu sa joke ¯_(ツ)_/¯"
+          );
+          console.log(err);
+        })
+      );
   }
 });
 
-client.login(process.env.token);
+client.login(token);
+
+async function joke() {
+  let endpoint = "https://icanhazdadjoke.com/";
+  let jokeData = await fetch(endpoint, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+  jokeData = await jokeData.json();
+  jokeData = await jokeData.joke;
+  return jokeData;
+}
