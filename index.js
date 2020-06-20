@@ -46,14 +46,7 @@ client.on("message", async (message) => {
     );
     await joke()
       .then((sayJoke = (jox) => message.channel.send(jox)))
-      .catch(
-        (err = () => {
-          message.channel.send(
-            "Ya chhod yaar; maine nai maarna koi faaltu sa joke ¯_(ツ)_/¯"
-          );
-          console.log(err);
-        })
-      );
+      .catch((err = (errorMessage) => console.log(errorMessage)));
   }
 });
 
