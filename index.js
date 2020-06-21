@@ -19,7 +19,7 @@ client.on("message", async (message) => {
   ) {
     fs.appendFile("./questions.txt", `\n${message.content}`, (err) => {
       console.log(err);
-    });
+    }).catch(Promise.reject);
   } else if (
     (message.content.includes("Answer") ||
       message.content.includes("answer")) &&
@@ -40,7 +40,9 @@ client.on("message", async (message) => {
         console.log(err);
       }
       x.send(data);
-    });
+    })
+      .then(console.log("done"))
+      .catch(Promise.reject());
   }
 });
 
