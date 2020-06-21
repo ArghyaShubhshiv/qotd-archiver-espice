@@ -42,9 +42,6 @@ client.on("message", async (message) => {
       x.send(data);
     });
   } else if (message.content.startsWith("q!joke")) {
-    await message.channel.send(
-      "Toh bhai main joke maarne ja raha hoon, agar lame lage toh please maarna mat."
-    );
     await joke()
       .then((sayJoke = (jox) => message.channel.send(jox)))
       .catch(
