@@ -58,7 +58,7 @@ client.on("message", async (message) => {
   }
 });
 
-client.login("NzIxNjg5MjU2MjQxNjU5OTE1.Xu5v3Q.-znXZSCogufWUm2Q0MNy6c-npbk");
+client.login(process.env.token);
 
 async function joke() {
   let endpoint = "https://icanhazdadjoke.com/";
