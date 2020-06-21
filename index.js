@@ -3,7 +3,7 @@ const fs = require("fs");
 const fetch = require("node-fetch");
 
 const client = new Discord.Client();
-const token = process.env.TOKEN;
+const token = process.env.token;
 
 client.once("ready", () => {
   console.log("Ready!");
