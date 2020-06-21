@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
+const fetch = require("node-fetch");
 
 const client = new Discord.Client();
 const token = process.env.TOKEN;
@@ -19,7 +20,7 @@ client.on("message", async (message) => {
   ) {
     fs.appendFile("./questions.txt", `\n${message.content}`, (err) => {
       console.log(err);
-    }).catch(Promise.reject);
+    });
   } else if (
     (message.content.includes("Answer") ||
       message.content.includes("answer")) &&
@@ -36,14 +37,37 @@ client.on("message", async (message) => {
     let x = message.author;
     message.channel.send("DMed you with the question list :)");
     fs.readFile("./questions.txt", "utf-8", (err, data) => {
-      if (err) {
-        console.log(err);
-      }
+      if (err) throw err;
+      console.log("questions given");
       x.send(data);
-    })
-      .then(console.log("done"))
-      .catch(Promise.reject());
+    });
+  } else if (message.content.startsWith("q!joke")) {
+    await message.channel.send(
+      "Toh bhai main joke maarne ja raha hoon, agar lame lage toh please maarna mat."
+    );
+    await joke()
+      .then((sayJoke = (jox) => message.channel.send(jox)))
+      .catch(
+        (err = () => {
+          message.channel.send(
+            "Ya chhod yaar; maine nai maarna koi faaltu sa joke ¯|..(ツ)..|¯"
+          );
+          console.log(err);
+        })
+      );
   }
 });
 
-client.login(token);
+client.login("NzIxNjg5MjU2MjQxNjU5OTE1.Xu5v3Q.-znXZSCogufWUm2Q0MNy6c-npbk");
+
+async function joke() {
+  let endpoint = "https://icanhazdadjoke.com/";
+  let jokeData = await fetch(endpoint, {
+    headers: {
+      Accept: "application/json",
+    },
+  });
+  jokeData = await jokeData.json();
+  jokeData = await jokeData.joke;
+  return jokeData;
+}
