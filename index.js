@@ -58,8 +58,6 @@ client.on("message", async (message) => {
   }
 });
 
-client.login(token);
-
 async function joke() {
   let endpoint = "https://icanhazdadjoke.com/";
   let jokeData = await fetch(endpoint, {
@@ -71,3 +69,5 @@ async function joke() {
   jokeData = await jokeData.joke;
   return jokeData;
 }
+
+client.login(token);
