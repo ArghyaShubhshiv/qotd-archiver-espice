@@ -56,9 +56,9 @@ client.on("message", async (message) => {
         })
       );
   } else if (message.content.toLowerCase().includes(chinese_companies)) {
-    await message.delete();
+    y = message.author.id;
     await message.channel.send(
-      "**CHINESE COMPANIES KA NAAM MAT BOL!!!** " + "@" + message.author.id
+      "**CHINESE COMPANIES KA NAAM MAT BOL!!!** " + "@" + y
     );
   }
 });
