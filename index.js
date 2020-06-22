@@ -11,7 +11,6 @@ client.once("ready", () => {
 });
 
 client.on("message", async (message) => {
-  finder();
   if (message.content.startsWith("q!help")) {
     message.channel.send(
       "This bot stores all the eSpice QOTDs; you can check them all by typing 'q!giveList.'\nI also crack lame jokes. Check them out too by 'q!joke'"
@@ -69,18 +68,6 @@ async function joke() {
   jokeData = await jokeData.json();
   jokeData = await jokeData.joke;
   return jokeData;
-}
-
-function finder() {
-  for (let i = 0; i < chinese_companies.length; i++) {
-    if (message.content.includes(chinese_companies[i])) {
-      y = message.author.id;
-      message.channel.send(
-        "**CHINESE COMPANIES KA NAAM MAT BOL!!!** " + "@" + y
-      );
-      break;
-    }
-  }
 }
 
 client.login(token);
