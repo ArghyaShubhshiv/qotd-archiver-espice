@@ -75,12 +75,12 @@ async function joke() {
   return jokeData;
 }
 
-function finder(arrayname){
+function finder(arrayname) {
   for (let i = 0; i < arrayname.length; i++) {
-    if (message.content.includes(arrayname[i]){
+    if (message.content.includes(arrayname[i])) {
       return true;
-      break
-    }    
+      break;
+    }
   }
 }
 
