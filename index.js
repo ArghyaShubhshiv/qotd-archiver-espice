@@ -18,7 +18,7 @@ client.on("message", async (message) => {
   } else if (
     message.content.startsWith("<#645998087076315157>") &&
     !(message.channel.type === "dm") &&
-    bot.channel.find("name", "qotd")
+    message.channel == bot.channel.find("name", "qotd")
   ) {
     fs.appendFile("./questions.txt", `\n${message.content}`, (err) => {
       console.log(err);
@@ -27,7 +27,7 @@ client.on("message", async (message) => {
     (message.content.includes("Answer") ||
       message.content.includes("answer")) &&
     !(message.channel.type === "dm") &&
-    bot.channel.find("name", "qotd")
+    message.channel == bot.channel.find("name", "qotd")
   ) {
     fs.appendFile(
       "./questions.txt",
@@ -55,7 +55,7 @@ client.on("message", async (message) => {
           console.log(err);
         })
       );
-  } else if (message.content.toLowerCase().includes(chinese_companies)) {
+  } else if (finder(chinese_companies) === true) {
     y = message.author.id;
     await message.channel.send(
       "**CHINESE COMPANIES KA NAAM MAT BOL!!!** " + "@" + y
@@ -73,6 +73,15 @@ async function joke() {
   jokeData = await jokeData.json();
   jokeData = await jokeData.joke;
   return jokeData;
+}
+
+function finder(arrayname){
+  for (let i = 0; i < arrayname.length; i++) {
+    if (message.content.includes(arrayname[i]){
+      return true;
+      break
+    }    
+  }
 }
 
 client.login(token);
