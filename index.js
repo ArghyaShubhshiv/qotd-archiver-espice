@@ -4,6 +4,7 @@ const fetch = require("node-fetch");
 
 const client = new Discord.Client();
 const token = process.env.token;
+const chinese_companies = require("./company.js");
 
 client.once("ready", () => {
   console.log("Ready!");
@@ -16,7 +17,8 @@ client.on("message", async (message) => {
     );
   } else if (
     message.content.startsWith("<#645998087076315157>") &&
-    !(message.channel.type === "dm")
+    !(message.channel.type === "dm") &&
+    bot.channel.find("name", "qotd")
   ) {
     fs.appendFile("./questions.txt", `\n${message.content}`, (err) => {
       console.log(err);
@@ -24,7 +26,8 @@ client.on("message", async (message) => {
   } else if (
     (message.content.includes("Answer") ||
       message.content.includes("answer")) &&
-    !(message.channel.type === "dm")
+    !(message.channel.type === "dm") &&
+    bot.channel.find("name", "qotd")
   ) {
     fs.appendFile(
       "./questions.txt",
@@ -52,6 +55,11 @@ client.on("message", async (message) => {
           console.log(err);
         })
       );
+  } else if (message.content.toLowerCase().includes(chinese_companies)) {
+    await message.delete();
+    await message.channel.send(
+      "**CHINESE COMPANIES KA NAAM MAT BOL!!!** " + "@" + message.author.id
+    );
   }
 });
 
