@@ -54,7 +54,7 @@ client.on("message", async (message) => {
           console.log(err);
         })
       );
-  } else if (msg.startsWith("q!read")) {
+  } else if (message.startsWith("q!read")) {
     await message.channel.send(
       "Reading an excerpt from The Communist Manifesto..."
     );
