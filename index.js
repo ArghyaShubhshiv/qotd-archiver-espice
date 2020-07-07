@@ -1,8 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const fetch = require("node-fetch");
-const fs = require("fs");
-
 const client = new Discord.Client();
 const token = process.env.TOKEN;
 
