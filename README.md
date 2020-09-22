@@ -1,2 +1,2 @@
-# qotd-archiver-espice
-A Discord bot for archiving the eSpice #Question of the Day. Also cracks lame jokes ¯\_(ツ)_/¯
+# Jaspal-Bhatti
+A Discord bot for archiving who cracks lame jokes. Named after the comedy legend. ¯\\_(ツ)_/¯
