@@ -13,33 +13,6 @@ client.on("message", async (message) => {
     message.channel.send(
       "I crack lame jokes. Check them out too by 'q!joke'\nMain ek Communist Sardar bhi hoon, so I can read out free virtual excerpts from the Communist Manifesto too."
     );
-  } else if (
-    message.content.startsWith("<#645998087076315157>") &&
-    !(message.channel.type === "dm")
-  ) {
-    fs.appendFile("./questions.txt", `\n${message.content}`, (err) => {
-      console.log(err);
-    });
-  } else if (
-    (message.content.includes("Answer") ||
-      message.content.includes("answer")) &&
-    !(message.channel.type === "dm")
-  ) {
-    fs.appendFile(
-      "./questions.txt",
-      `\n **${message.content}** \n\n`,
-      (err) => {
-        console.log(err);
-      }
-    );
-  } else if (message.content.startsWith("q!giveList")) {
-    let x = message.author;
-    message.channel.send("DMed you with the question list :)");
-    fs.readFile("./questions.txt", "utf-8", (err, data) => {
-      if (err) throw err;
-      console.log("questions given");
-      x.send(data);
-    });
   } else if (message.content.startsWith("q!joke")) {
     await joke()
       .then((sayJoke = (jox) => message.channel.send(jox)))
