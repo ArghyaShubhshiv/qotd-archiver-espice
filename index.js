@@ -11,7 +11,7 @@ client.once("ready", () => {
 client.on("message", async (message) => {
   if (message.content.startsWith("q!help")) {
     message.channel.send(
-      "I crack lame jokes. Check them out too by 'q!joke'\nMain ek Communist Sardar bhi hoon, so I can read out free virtual excerpts from the Communist Manifesto too."
+      "I crack lame jokes. Check them out too by 'q!joke'\nMI'm a commie too, so I can read out free virtual excerpts from the Communist Manifesto, check it out by 'q!read'."
     );
   } else if (message.content.startsWith("q!joke")) {
     await joke()
@@ -24,7 +24,7 @@ client.on("message", async (message) => {
           console.log(err);
         })
       );
-  } else if (msg.startsWith("read")) {
+  } else if (msg.startsWith("q!read")) {
     await message.channel.send(
       "Reading an excerpt from The Communist Manifesto..."
     );
